@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VNNEWS</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="string_array_category">
+        <item>Nóng</item>
+        <item>Công nghệ</item>
+        <item>Đọc nhiều</item>
+        <item>Giải trí</item>
+        <item>Giáo dục</item>
+        <item>Kinh tế</item>
+        <item>Nhà đất</item>
+        <item>Ô tô - Xe máy</item>
+        <item>Pháp luật</item>
+        <item>Sức khỏe</item>
+        <item>Thế giới</item>
+        <item>Thể thao</item>
+        <item>Văn hóa</item>
+        <item>Xã hội</item>
+        <item>About Me!</item>
+    </string-array>
+
+</resources>

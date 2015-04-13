@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="ic_category"></array>
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_nong</item>
+        <item>@drawable/ic_congnghe</item>
+        <item>@drawable/ic_docnhieu</item>
+        <item>@drawable/ic_giaitri</item>
+        <item>@drawable/ic_giaduc</item>
+        <item>@drawable/ic_kinhte</item>
+        <item>@drawable/ic_nhadat</item>
+        <item>@drawable/ic_otoxemay</item>
+        <item>@drawable/ic_phapluat</item>
+        <item>@drawable/ic_suckhoe</item>
+        <item>@drawable/ic_thegioi</item>
+        <item>@drawable/ic_thethao</item>
+        <item>@drawable/ic_vanhoa</item>
+        <item>@drawable/ic_xahoi</item>
+        <item>@drawable/ic_about</item>
+    </array>
+
+</resources>
