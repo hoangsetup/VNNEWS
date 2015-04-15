@@ -143,8 +143,8 @@ public class SlideActivity extends Activity {
 		}
 		// Handle action bar actions click
 		switch (item.getItemId()) {
-		case R.id.action_refresh:
-			return false;
+		//case R.id.action_refresh:
+		//	return false;
 		case R.id.action_back_top:
 			return false;
 		default:
@@ -159,7 +159,7 @@ public class SlideActivity extends Activity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// if nav drawer is opened, hide the action items
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-		menu.findItem(R.id.action_refresh).setVisible(!drawerOpen);
+		menu.findItem(R.id.action_back_top).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 

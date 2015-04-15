@@ -153,9 +153,9 @@ public class HomeFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
-		case R.id.action_refresh:
-			loadmoreNews();
-			return true;
+		//case R.id.action_refresh:
+		//	loadmoreNews();
+		//	return true;
 		case R.id.action_back_top:
 			gridView.smoothScrollToPosition(0);
 			return true;

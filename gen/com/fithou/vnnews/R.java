@@ -173,8 +173,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int action_back_top=0x7f0b0011;
-        public static final int action_refresh=0x7f0b0012;
-        public static final int add_favorite=0x7f0b0014;
+        public static final int add_favorite=0x7f0b0013;
         public static final int counter=0x7f0b0009;
         public static final int drawer_layout=0x7f0b0001;
         public static final int frame_container=0x7f0b0002;
@@ -185,7 +184,7 @@ containing a value of this type.
         public static final int list_slidermenu=0x7f0b0003;
         public static final int progressBar_loading=0x7f0b000c;
         public static final int progress_wheel=0x7f0b0006;
-        public static final int save_ofline=0x7f0b0013;
+        public static final int save_ofline=0x7f0b0012;
         public static final int textView1=0x7f0b0005;
         public static final int textView_nguon=0x7f0b000e;
         public static final int textView_pubdate=0x7f0b000f;
