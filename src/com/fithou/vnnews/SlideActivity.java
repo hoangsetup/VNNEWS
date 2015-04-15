@@ -22,6 +22,7 @@ import com.fithou.vnnews.adapters.NavDrawerListAdapter;
 import com.fithou.vnnews.fragments.HomeFragment;
 import com.fithou.vnnews.models.AppConfig;
 import com.fithou.vnnews.models.NavDrawerItem;
+import com.fithou.vnnews.utils.SharedPreHelper;
 
 @SuppressWarnings("deprecation")
 public class SlideActivity extends Activity {
@@ -143,8 +144,8 @@ public class SlideActivity extends Activity {
 		}
 		// Handle action bar actions click
 		switch (item.getItemId()) {
-		//case R.id.action_refresh:
-		//	return false;
+		// case R.id.action_refresh:
+		// return false;
 		case R.id.action_back_top:
 			return false;
 		default:
@@ -169,6 +170,7 @@ public class SlideActivity extends Activity {
 	private void displayView(int position) {
 		// update the main content by replacing fragments
 		Fragment fragment = null;
+		HomeFragment.isFavorite = false;
 		switch (position) {
 		case 0:
 			fragment = new HomeFragment(AppConfig.TIN_NONG);
@@ -222,7 +224,8 @@ public class SlideActivity extends Activity {
 			fragment = new HomeFragment(AppConfig.URL_XAHOI, AppConfig.XA_HOI);
 			break;
 		case 14:
-			//fragment = new HomeFragment(AppConfig., AppConfig.XA_HOI);
+			HomeFragment.isFavorite = true;
+			fragment = new HomeFragment("", AppConfig.FAVORITE);
 			break;
 		default:
 			break;
@@ -267,6 +270,32 @@ public class SlideActivity extends Activity {
 		super.onConfigurationChanged(newConfig);
 		// Pass any configuration change to the drawer toggls
 		mDrawerToggle.onConfigurationChanged(newConfig);
+	}
+
+	@SuppressWarnings("static-access")
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		SharedPreHelper helper = new SharedPreHelper(this);
+		helper.savaListNews(AppConfig.FAVORITE, helper.KEY_FAVORITE);
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Thread thread = new Thread(new Runnable() {
+
+			@SuppressWarnings("static-access")
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				SharedPreHelper helper = new SharedPreHelper(SlideActivity.this);
+				helper.getListNews(helper.KEY_FAVORITE);
+			}
+		});
+		thread.start();
 	}
 
 }

@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
@@ -26,7 +25,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.fithou.vnnews.app.AppController;
 import com.fithou.vnnews.models.AppConfig;
 import com.fithou.vnnews.models.NewsItem;
-import com.fithou.vnnews.utils.SharedPreHelper;
 
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
@@ -101,7 +99,6 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	@SuppressWarnings("static-access")
 	@Override
 	public boolean onOptionsItemSelected(MenuItem menuitem) {
 		// TODO Auto-generated method stub
@@ -110,11 +107,9 @@ public class MainActivity extends Activity {
 			saveHtmlToSDCard(this.item);
 			break;
 		case R.id.add_favorite:
-			Toast.makeText(MainActivity.this, "Favorite!", Toast.LENGTH_SHORT)
-					.show();
-			SharedPreHelper helper = new SharedPreHelper(this);
-			AppConfig.FAVORITE.add(this.item);
-			helper.savaListNews(AppConfig.TIN_NONG, helper.KEY_FAVORITE);
+			//SharedPreHelper helper = new SharedPreHelper(this);
+			AppConfig.FAVORITE.insertElementAt(this.item, 0);
+			//helper.savaListNews(AppConfig.TIN_NONG, helper.KEY_FAVORITE);
 			break;
 		case android.R.id.home:
 			finish();
