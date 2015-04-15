@@ -221,7 +221,9 @@ public class SlideActivity extends Activity {
 		case 13:
 			fragment = new HomeFragment(AppConfig.URL_XAHOI, AppConfig.XA_HOI);
 			break;
-
+		case 14:
+			//fragment = new HomeFragment(AppConfig., AppConfig.XA_HOI);
+			break;
 		default:
 			break;
 		}

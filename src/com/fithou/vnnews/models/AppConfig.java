@@ -62,4 +62,10 @@ public class AppConfig {
 
 	public static String URL_GETNEWS = SERVER + "/GetNewsV6?id=";
 
+	//
+	public static Vector<NewsItem> FAVORITE = new Vector<NewsItem>();
+	public static Vector<NewsItem> SAVED = new Vector<NewsItem>();
+
+	public static String FOLDER_SAVE = "vnnewsdata";
+
 }

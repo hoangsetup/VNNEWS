@@ -2,6 +2,7 @@ package com.fithou.vnnews.fragments;
 
 import java.util.Vector;
 
+import android.R.integer;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
@@ -85,6 +88,27 @@ public class HomeFragment extends Fragment {
 		setHasOptionsMenu(true);
 		getActivity().getActionBar().setSubtitle(
 				getResources().getString(R.string.app_name));
+		
+		
+		gridView.setOnScrollListener(new OnScrollListener() {
+			
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				// TODO Auto-generated method stub
+				int index = gridView.getLastVisiblePosition();
+				if(index == (newsItems.size() - 1)){
+					loadmoreNews();
+				}
+			}
+			
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		return rootView;
 	}
 
@@ -157,8 +181,9 @@ public class HomeFragment extends Fragment {
 		Log.d("Home loadmore", newsItems.size() + "--" + page);
 		page += step;
 		adapter.notifyDataSetChanged();
-		int index = gridView.getCount() - 1;
-		gridView.smoothScrollToPosition(index - 2);
+		// Load to last position
+		//int index = gridView.getCount() - 1;
+		//gridView.smoothScrollToPosition(index - 2);
 	}
 
 }

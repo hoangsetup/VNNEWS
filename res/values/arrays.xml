@@ -17,6 +17,7 @@
         <item>@drawable/ic_thethao</item>
         <item>@drawable/ic_vanhoa</item>
         <item>@drawable/ic_xahoi</item>
+        <item>@drawable/ic_launcher</item>
         <item>@drawable/ic_about</item>
     </array>
 

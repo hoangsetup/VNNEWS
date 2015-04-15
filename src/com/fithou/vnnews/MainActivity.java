@@ -1,9 +1,17 @@
 package com.fithou.vnnews;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +19,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.fithou.vnnews.app.AppController;
+import com.fithou.vnnews.models.AppConfig;
 import com.fithou.vnnews.models.NewsItem;
+import com.fithou.vnnews.utils.SharedPreHelper;
 
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
@@ -74,24 +89,6 @@ public class MainActivity extends Activity {
 		// remove a weird white line on the right size
 		webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 
-		// StringRequest request = new StringRequest(link, new
-		// Listener<String>() {
-		// @Override
-		// public void onResponse(String arg0) {
-		// // TODO Auto-generated method stub
-		// arg0 = "<H2>Tiêu đề</H2>\n" + arg0.replace("<>", "").trim();
-		// webView.loadDataWithBaseURL("x-data://base", arg0, "text/html",
-		// "UTF-8", null);
-		// // webView.zoomIn();
-		// }
-		// }, new ErrorListener() {
-		// @Override
-		// public void onErrorResponse(VolleyError arg0) {
-		// // TODO Auto-generated method stub
-		// arg0.printStackTrace();
-		// }
-		// });
-
 		dialog = ProgressDialog.show(this, "", "Đang tải...", true, true);
 		webView.loadUrl(link);
 		// AppController.getInstance().addToRequestQueue(request);
@@ -104,25 +101,89 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem menuitem) {
 		// TODO Auto-generated method stub
-		switch (item.getItemId()) {
+		switch (menuitem.getItemId()) {
 		case R.id.save_ofline:
-			Toast.makeText(MainActivity.this, "Save!", Toast.LENGTH_SHORT)
-					.show();
+			saveHtmlToSDCard(this.item);
 			break;
 		case R.id.add_favorite:
 			Toast.makeText(MainActivity.this, "Favorite!", Toast.LENGTH_SHORT)
 					.show();
+			SharedPreHelper helper = new SharedPreHelper(this);
+			AppConfig.FAVORITE.add(this.item);
+			helper.savaListNews(AppConfig.TIN_NONG, helper.KEY_FAVORITE);
 			break;
 		case android.R.id.home:
-			Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT)
-					.show();
+			finish();
 			break;
 		default:
 			break;
 		}
 		return true;
+	}
+
+	private void saveHtmlToSDCard(final NewsItem news) {
+		dialog = ProgressDialog.show(this, "", "Đang tải...", true, true);
+		StringRequest request = new StringRequest(AppConfig.URL_GETNEWS
+				+ news.getId(), new Listener<String>() {
+			@Override
+			public void onResponse(String arg0) {
+				// TODO Auto-generated method stub
+				arg0 = "<H2>" + news.getTitle() + "</H2>\n"
+						+ arg0.replace("<>", "").trim();
+				// webView.loadDataWithBaseURL("x-data://base", arg0,
+				// "text/html",
+				// "UTF-8", null);
+				// webView.zoomIn();
+				writeToFile(news.getId(), arg0);
+				if (dialog != null)
+					dialog.dismiss();
+
+			}
+		}, new ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError arg0) {
+				// TODO Auto-generated method stub
+				if (dialog != null)
+					dialog.dismiss();
+				arg0.printStackTrace();
+			}
+		});
+		AppController.getInstance().addToRequestQueue(request);
+	}
+
+	private void writeToFile(String fileName, String body) {
+		// FileOutputStream fos = null;
+		Writer writer = null;
+		try {
+			final File dir = new File(Environment.getExternalStorageDirectory()
+					.getAbsolutePath() + "/" + AppConfig.FOLDER_SAVE + "/");
+
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
+
+			final File myFile = new File(dir, fileName + ".html");
+
+			if (!myFile.exists()) {
+				myFile.createNewFile();
+			}
+
+			// fos = new FileOutputStream(myFile);
+
+			writer = new BufferedWriter(new OutputStreamWriter(
+					new FileOutputStream(myFile), "UTF-8"));
+			writer.write(body);
+			if (writer != null)
+				writer.close();
+			// fos.write(body.getBytes());
+			// fos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
