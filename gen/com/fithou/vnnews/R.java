@@ -124,6 +124,7 @@ containing a value of this type.
          */
         public static final int activity_horizontal_margin=0x7f070000;
         public static final int activity_vertical_margin=0x7f070001;
+        public static final int text_padding=0x7f070002;
     }
     public static final class drawable {
         public static final int baodientu=0x7f020000;

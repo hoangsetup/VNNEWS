@@ -32,11 +32,11 @@
             android:id="@+id/textView_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:gravity="top"
-            android:paddingLeft="1dp"
-            android:paddingTop="2dp"
+            android:paddingLeft="@dimen/text_padding"
+            android:paddingStart="@dimen/text_padding"
+            android:paddingEnd="@dimen/text_padding"
+            android:paddingTop="@dimen/text_padding"
             android:singleLine="false"
             android:text="Hiến pháp Colombia bỏ quyền cho phép tổng thống được tái cử"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -45,7 +45,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical|right"
+            android:gravity="center_vertical|end"
             android:padding="4dp" >
 
             <LinearLayout
@@ -70,10 +70,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/text_padding"
+                    android:paddingRight="@dimen/text_padding"
+                    android:paddingStart="@dimen/text_padding"
                     android:text="04/08/2015 03:08:00 PM"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="#FFF"
-                    android:textSize="5pt"
+                    android:textSize="@dimen/small_text"
                     android:textStyle="italic" />
             </LinearLayout>
 
@@ -81,7 +84,6 @@
                 android:id="@+id/imageView_iconnguon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_alignParentBottom="true"
                 android:layout_margin="2dp" />
         </LinearLayout>
     </LinearLayout>
