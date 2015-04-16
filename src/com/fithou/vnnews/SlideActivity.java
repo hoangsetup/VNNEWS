@@ -99,12 +99,15 @@ public class SlideActivity extends Activity {
 				getActionBar().setTitle(mTitle);
 				// calling onPrepareOptionsMenu() to show action bar icons
 				invalidateOptionsMenu();
+
 			}
 
 			public void onDrawerOpened(View drawerView) {
 				getActionBar().setTitle(mDrawerTitle);
 				// calling onPrepareOptionsMenu() to hide action bar icons
 				invalidateOptionsMenu();
+
+				getActionBar().setIcon(R.drawable.ic_launcher);
 			}
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -161,6 +164,7 @@ public class SlideActivity extends Activity {
 		// if nav drawer is opened, hide the action items
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
 		menu.findItem(R.id.action_back_top).setVisible(!drawerOpen);
+
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -169,6 +173,8 @@ public class SlideActivity extends Activity {
 	 * */
 	private void displayView(int position) {
 		// update the main content by replacing fragments
+		getActionBar().setIcon(navMenuIcons.getDrawable(position));
+
 		Fragment fragment = null;
 		HomeFragment.isFavorite = false;
 		switch (position) {
