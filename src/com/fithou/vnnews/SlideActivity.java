@@ -65,7 +65,7 @@ public class SlideActivity extends Activity {
 		int i = 0;
 		for (String s : cates) {
 			navDrawerItems.add(new NavDrawerItem(s, navMenuIcons.getResourceId(
-					i, 1), true, "18+"));
+					i, 1), false, "18+"));
 			i++;
 		}
 		// navDrawerItems.add(new NavDrawerItem("Title 1", R.drawable.ic_home));
