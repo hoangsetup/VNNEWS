@@ -23,4 +23,12 @@
         <item>About Me!</item>
     </string-array>
 
+    <string name="err_khong_ket_noi_in">Thiết bị không kết nối Internet, hãy thử lại sau</string>
+    <string name="thong_bao_error_network">Thông báo</string>
+    <string name="btn_close_app">Thoát</string>
+    <string name="btn_restart_app">Khởi động lại</string>
+    <string name="loading">Đang tải&#8230;</string>
+    <string name="save_favorite">Đánh dấu đọc sau</string>
+    <string name="back_top">Về trang đầu</string>
+
 </resources>

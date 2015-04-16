@@ -1,28 +1,15 @@
 package com.fithou.vnnews;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.fithou.vnnews.app.AppController;
 import com.fithou.vnnews.models.AppConfig;
 import com.fithou.vnnews.models.NewsItem;
 
@@ -87,7 +74,8 @@ public class MainActivity extends Activity {
 		// remove a weird white line on the right size
 		webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 
-		dialog = ProgressDialog.show(this, "", "Đang tải...", true, true);
+		dialog = ProgressDialog.show(this, "",
+				getResources().getString(R.string.loading), true, true);
 		webView.loadUrl(link);
 		// AppController.getInstance().addToRequestQueue(request);
 	}
@@ -103,13 +91,13 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem menuitem) {
 		// TODO Auto-generated method stub
 		switch (menuitem.getItemId()) {
-		case R.id.save_ofline:
-			saveHtmlToSDCard(this.item);
-			break;
+		// case R.id.save_ofline:
+		// saveHtmlToSDCard(this.item);
+		// break;
 		case R.id.add_favorite:
-			//SharedPreHelper helper = new SharedPreHelper(this);
+			// SharedPreHelper helper = new SharedPreHelper(this);
 			AppConfig.FAVORITE.insertElementAt(this.item, 0);
-			//helper.savaListNews(AppConfig.TIN_NONG, helper.KEY_FAVORITE);
+			// helper.savaListNews(AppConfig.TIN_NONG, helper.KEY_FAVORITE);
 			break;
 		case android.R.id.home:
 			finish();
@@ -120,65 +108,60 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	private void saveHtmlToSDCard(final NewsItem news) {
-		dialog = ProgressDialog.show(this, "", "Đang tải...", true, true);
-		StringRequest request = new StringRequest(AppConfig.URL_GETNEWS
-				+ news.getId(), new Listener<String>() {
-			@Override
-			public void onResponse(String arg0) {
-				// TODO Auto-generated method stub
-				arg0 = "<H2>" + news.getTitle() + "</H2>\n"
-						+ arg0.replace("<>", "").trim();
-				// webView.loadDataWithBaseURL("x-data://base", arg0,
-				// "text/html",
-				// "UTF-8", null);
-				// webView.zoomIn();
-				writeToFile(news.getId(), arg0);
-				if (dialog != null)
-					dialog.dismiss();
+	/* Lưu tin nhắn về dạng file html
+	// private void saveHtmlToSDCard(final NewsItem news) {
+	// dialog = ProgressDialog.show(this, "",
+	// getResources().getString(R.string.loading), true, true);
+	// StringRequest request = new StringRequest(AppConfig.URL_GETNEWS
+	// + news.getId(), new Listener<String>() {
+	// @Override
+	// public void onResponse(String arg0) {
+	// // TODO Auto-generated method stub
+	// arg0 = "<H2>" + news.getTitle() + "</H2>\n"
+	// + arg0.replace("<>", "").trim();
+	// writeToFile(news.getId(), arg0);
+	// if (dialog != null)
+	// dialog.dismiss();
+	//
+	// }
+	// }, new ErrorListener() {
+	// @Override
+	// public void onErrorResponse(VolleyError arg0) {
+	// // TODO Auto-generated method stub
+	// if (dialog != null)
+	// dialog.dismiss();
+	// arg0.printStackTrace();
+	// }
+	// });
+	// AppController.getInstance().addToRequestQueue(request);
+	// }
 
-			}
-		}, new ErrorListener() {
-			@Override
-			public void onErrorResponse(VolleyError arg0) {
-				// TODO Auto-generated method stub
-				if (dialog != null)
-					dialog.dismiss();
-				arg0.printStackTrace();
-			}
-		});
-		AppController.getInstance().addToRequestQueue(request);
-	}
-
-	private void writeToFile(String fileName, String body) {
-		// FileOutputStream fos = null;
-		Writer writer = null;
-		try {
-			final File dir = new File(Environment.getExternalStorageDirectory()
-					.getAbsolutePath() + "/" + AppConfig.FOLDER_SAVE + "/");
-
-			if (!dir.exists()) {
-				dir.mkdirs();
-			}
-
-			final File myFile = new File(dir, fileName + ".html");
-
-			if (!myFile.exists()) {
-				myFile.createNewFile();
-			}
-
-			// fos = new FileOutputStream(myFile);
-
-			writer = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(myFile), "UTF-8"));
-			writer.write(body);
-			if (writer != null)
-				writer.close();
-			// fos.write(body.getBytes());
-			// fos.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	// private void writeToFile(String fileName, String body) {
+	// // FileOutputStream fos = null;
+	// Writer writer = null;
+	// try {
+	// final File dir = new File(Environment.getExternalStorageDirectory()
+	// .getAbsolutePath() + "/" + AppConfig.FOLDER_SAVE + "/");
+	//
+	// if (!dir.exists()) {
+	// dir.mkdirs();
+	// }
+	//
+	// final File myFile = new File(dir, fileName + ".html");
+	//
+	// if (!myFile.exists()) {
+	// myFile.createNewFile();
+	// }
+	//
+	// writer = new BufferedWriter(new OutputStreamWriter(
+	// new FileOutputStream(myFile), "UTF-8"));
+	// writer.write(body);
+	// if (writer != null)
+	// writer.close();
+	// } catch (IOException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// }
+	 */
 }

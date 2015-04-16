@@ -173,7 +173,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int action_back_top=0x7f0b0011;
-        public static final int add_favorite=0x7f0b0013;
+        public static final int add_favorite=0x7f0b0012;
         public static final int counter=0x7f0b0009;
         public static final int drawer_layout=0x7f0b0001;
         public static final int frame_container=0x7f0b0002;
@@ -184,7 +184,6 @@ containing a value of this type.
         public static final int list_slidermenu=0x7f0b0003;
         public static final int progressBar_loading=0x7f0b000c;
         public static final int progress_wheel=0x7f0b0006;
-        public static final int save_ofline=0x7f0b0012;
         public static final int textView1=0x7f0b0005;
         public static final int textView_nguon=0x7f0b000e;
         public static final int textView_pubdate=0x7f0b000f;
@@ -208,6 +207,13 @@ containing a value of this type.
     public static final class string {
         public static final int action_settings=0x7f080001;
         public static final int app_name=0x7f080000;
+        public static final int back_top=0x7f080008;
+        public static final int btn_close_app=0x7f080004;
+        public static final int btn_restart_app=0x7f080005;
+        public static final int err_khong_ket_noi_in=0x7f080002;
+        public static final int loading=0x7f080006;
+        public static final int save_favorite=0x7f080007;
+        public static final int thong_bao_error_network=0x7f080003;
     }
     public static final class style {
         /** 
