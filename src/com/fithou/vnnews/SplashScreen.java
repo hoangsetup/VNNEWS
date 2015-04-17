@@ -61,49 +61,7 @@ public class SplashScreen extends Activity {
 			public void onAnimationEnd(Animation animation) {
 				// TODO Auto-generated method stub
 				if (!isConnectingToNetwork()) {
-					Resources res = getResources();
-					AlertDialog.Builder builder = new Builder(SplashScreen.this);
-					builder.setTitle(res
-							.getString(R.string.thong_bao_error_network));
-					builder.setMessage(res
-							.getString(R.string.err_khong_ket_noi_in));
-					builder.setNegativeButton(
-							res.getString(R.string.btn_close_app),
-							new OnClickListener() {
-
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									// TODO Auto-generated method stub
-									finish();
-								}
-							});
-					builder.setPositiveButton(
-							res.getString(R.string.btn_restart_app),
-							new OnClickListener() {
-
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									// TODO Auto-generated method stub
-									Intent i = getBaseContext()
-											.getPackageManager()
-											.getLaunchIntentForPackage(
-													getBaseContext()
-															.getPackageName());
-									i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-									finish();
-									startActivity(i);
-								}
-							});
-					builder.setOnCancelListener(new OnCancelListener() {
-						
-						@Override
-						public void onCancel(DialogInterface dialog) {
-							// TODO Auto-generated method stub
-							finish();
-						}
-					});
+					catchError();
 				}
 
 				progressWheel.setVisibility(View.VISIBLE);
@@ -128,6 +86,7 @@ public class SplashScreen extends Activity {
 								Toast.makeText(SplashScreen.this,
 										arg0.toString(), Toast.LENGTH_LONG)
 										.show();
+								catchError();
 							}
 						});
 				AppController.getInstance().addToRequestQueue(request);
@@ -152,5 +111,44 @@ public class SplashScreen extends Activity {
 			}
 		}
 		return false;
+	}
+
+	public void catchError() {
+		Resources res = getResources();
+		AlertDialog.Builder builder = new Builder(SplashScreen.this);
+		builder.setTitle(res.getString(R.string.thong_bao_error_network));
+		builder.setMessage(res.getString(R.string.err_khong_ket_noi_in));
+		builder.setNegativeButton(res.getString(R.string.btn_close_app),
+				new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						finish();
+					}
+				});
+		builder.setPositiveButton(res.getString(R.string.btn_restart_app),
+				new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						Intent i = getBaseContext().getPackageManager()
+								.getLaunchIntentForPackage(
+										getBaseContext().getPackageName());
+						i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						finish();
+						startActivity(i);
+					}
+				});
+		builder.setOnCancelListener(new OnCancelListener() {
+
+			@Override
+			public void onCancel(DialogInterface dialog) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
+		builder.show();
 	}
 }

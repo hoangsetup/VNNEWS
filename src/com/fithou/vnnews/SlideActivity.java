@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.fithou.vnnews.adapters.NavDrawerListAdapter;
+import com.fithou.vnnews.fragments.AboutFragment;
 import com.fithou.vnnews.fragments.HomeFragment;
 import com.fithou.vnnews.models.AppConfig;
 import com.fithou.vnnews.models.NavDrawerItem;
@@ -232,6 +233,10 @@ public class SlideActivity extends Activity {
 		case 14:
 			HomeFragment.isFavorite = true;
 			fragment = new HomeFragment("", AppConfig.FAVORITE);
+			break;
+		case 15:
+			// About
+			fragment = new AboutFragment();
 			break;
 		default:
 			break;

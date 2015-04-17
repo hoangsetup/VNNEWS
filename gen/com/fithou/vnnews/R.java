@@ -9,7 +9,8 @@ package com.fithou.vnnews;
 
 public final class R {
     public static final class anim {
-        public static final int anim_move_up=0x7f040000;
+        public static final int anim_fade_in=0x7f040000;
+        public static final int anim_move_up=0x7f040001;
     }
     public static final class array {
         public static final int ic_category=0x7f050000;
@@ -174,23 +175,24 @@ containing a value of this type.
         public static final int logo=0x7f02002b;
     }
     public static final class id {
-        public static final int action_back_top=0x7f0b0011;
-        public static final int add_favorite=0x7f0b0012;
+        public static final int action_back_top=0x7f0b0012;
+        public static final int add_favorite=0x7f0b0013;
         public static final int counter=0x7f0b0009;
         public static final int drawer_layout=0x7f0b0001;
         public static final int frame_container=0x7f0b0002;
-        public static final int grid_view=0x7f0b000a;
+        public static final int grid_view=0x7f0b000b;
         public static final int icon=0x7f0b0007;
-        public static final int imageView_iconnguon=0x7f0b0010;
+        public static final int imageView_iconnguon=0x7f0b0011;
         public static final int imageView_logo=0x7f0b0004;
         public static final int list_slidermenu=0x7f0b0003;
-        public static final int progressBar_loading=0x7f0b000c;
+        public static final int progressBar_loading=0x7f0b000d;
         public static final int progress_wheel=0x7f0b0006;
         public static final int textView1=0x7f0b0005;
-        public static final int textView_nguon=0x7f0b000e;
-        public static final int textView_pubdate=0x7f0b000f;
-        public static final int textView_title=0x7f0b000d;
-        public static final int thumbnail=0x7f0b000b;
+        public static final int textView_info=0x7f0b000a;
+        public static final int textView_nguon=0x7f0b000f;
+        public static final int textView_pubdate=0x7f0b0010;
+        public static final int textView_title=0x7f0b000e;
+        public static final int thumbnail=0x7f0b000c;
         public static final int title=0x7f0b0008;
         public static final int webView_main=0x7f0b0000;
     }
@@ -199,8 +201,9 @@ containing a value of this type.
         public static final int activity_slider=0x7f030001;
         public static final int activity_splash=0x7f030002;
         public static final int drawer_list_item=0x7f030003;
-        public static final int fragment_home=0x7f030004;
-        public static final int grid_item=0x7f030005;
+        public static final int fragment_about=0x7f030004;
+        public static final int fragment_home=0x7f030005;
+        public static final int grid_item=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
