@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView_logo"
         android:layout_centerHorizontal="true"
-        android:text="Thông tin nhóm:\nThành viên:\n"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="visible" />
 
@@ -20,6 +20,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="182dp"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/logo"
         android:visibility="visible" />
 
