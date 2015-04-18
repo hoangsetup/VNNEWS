@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.fithou.vnnews.MainActivity" >
 
-    <item
+<!--     <item
         android:id="@+id/action_back_top"
         android:icon="@drawable/ic_back_top"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:title="@string/back_top"/>
+        android:title="@string/back_top"/> -->
 
     <!--
     <item

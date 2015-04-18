@@ -17,6 +17,8 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request.Method;
@@ -45,6 +47,8 @@ public class HomeFragment extends Fragment {
 
 	public static boolean isFavorite = false;
 
+	private ImageButton imageButton_top;
+
 	public HomeFragment(Vector<NewsItem> vt) {
 		this.vtTemp = vt;
 	}
@@ -65,6 +69,10 @@ public class HomeFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_home, container,
 				false);
 		gridView = (GridView) rootView.findViewById(R.id.grid_view);
+
+		imageButton_top = (ImageButton) rootView
+				.findViewById(R.id.imageButton_top);
+
 		if (vtTemp.size() > 0) {
 
 			if (vtTemp.size() <= step) {
@@ -131,6 +139,15 @@ public class HomeFragment extends Fragment {
 				return false;
 			}
 		});
+		
+		imageButton_top.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				gridView.smoothScrollToPosition(0);
+			}
+		});
 
 		return rootView;
 	}
@@ -184,9 +201,9 @@ public class HomeFragment extends Fragment {
 		// case R.id.action_refresh:
 		// loadmoreNews();
 		// return true;
-		case R.id.action_back_top:
-			gridView.smoothScrollToPosition(0);
-			return true;
+		//case R.id.action_back_top:
+		//	gridView.smoothScrollToPosition(0);
+		//	return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}

@@ -13,4 +13,16 @@
         android:stretchMode="columnWidth" >
     </GridView>
 
+    <ImageButton
+        android:id="@+id/imageButton_top"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="8dp"
+        android:background="#55FFFFFF"
+        android:scaleType="center"
+        android:src="@drawable/ic_back_top_2" />
+
 </RelativeLayout>
