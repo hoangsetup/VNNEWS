@@ -4,8 +4,9 @@
     android:layout_height="48dp"
     android:background="@drawable/list_selector" >
 
-    <ImageView
+    <com.fithou.vnnews.models.CircleImage
         android:id="@+id/icon"
+        android:scaleType="centerCrop"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_alignParentLeft="true"
