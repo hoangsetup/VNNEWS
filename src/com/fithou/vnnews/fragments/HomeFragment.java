@@ -150,8 +150,8 @@ public class HomeFragment extends Fragment {
 					Toast.LENGTH_SHORT).show();
 			return;
 		}
-		dialog = ProgressDialog.show(getActivity(), "", "Đang tải...", false,
-				true);
+		dialog = ProgressDialog.show(getActivity(), "", "Đang tải...", true,
+				false);
 		StringRequest request = new StringRequest(Method.GET, LINK_NEWS,
 				new Listener<String>() {
 					@Override
