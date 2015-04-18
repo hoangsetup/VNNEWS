@@ -3,12 +3,15 @@ package com.fithou.vnnews;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.fithou.vnnews.models.AppConfig;
 import com.fithou.vnnews.models.NewsItem;
@@ -42,7 +45,9 @@ public class MainActivity extends Activity {
 		// }
 
 		getActionBar().setHomeButtonEnabled(true);
-		getActionBar().setIcon(R.drawable.ic_back_top);
+		getActionBar().setIcon(R.drawable.ic_back);
+		getActionBar().setBackgroundDrawable(
+				new ColorDrawable(Color.parseColor("#55000000")));
 
 		setContentView(R.layout.activity_main);
 		webView = (WebView) findViewById(R.id.webView_main);
@@ -98,6 +103,7 @@ public class MainActivity extends Activity {
 			// SharedPreHelper helper = new SharedPreHelper(this);
 			AppConfig.FAVORITE.insertElementAt(this.item, 0);
 			// helper.savaListNews(AppConfig.TIN_NONG, helper.KEY_FAVORITE);
+			Toast.makeText(this, "Đã thêm vào mục đọc sau!", Toast.LENGTH_SHORT).show();
 			break;
 		case android.R.id.home:
 			finish();
@@ -107,61 +113,31 @@ public class MainActivity extends Activity {
 		}
 		return true;
 	}
-
-	/* Lưu tin nhắn về dạng file html
-	// private void saveHtmlToSDCard(final NewsItem news) {
-	// dialog = ProgressDialog.show(this, "",
-	// getResources().getString(R.string.loading), true, true);
-	// StringRequest request = new StringRequest(AppConfig.URL_GETNEWS
-	// + news.getId(), new Listener<String>() {
-	// @Override
-	// public void onResponse(String arg0) {
-	// // TODO Auto-generated method stub
-	// arg0 = "<H2>" + news.getTitle() + "</H2>\n"
-	// + arg0.replace("<>", "").trim();
-	// writeToFile(news.getId(), arg0);
-	// if (dialog != null)
-	// dialog.dismiss();
-	//
-	// }
-	// }, new ErrorListener() {
-	// @Override
-	// public void onErrorResponse(VolleyError arg0) {
-	// // TODO Auto-generated method stub
-	// if (dialog != null)
-	// dialog.dismiss();
-	// arg0.printStackTrace();
-	// }
-	// });
-	// AppController.getInstance().addToRequestQueue(request);
-	// }
-
-	// private void writeToFile(String fileName, String body) {
-	// // FileOutputStream fos = null;
-	// Writer writer = null;
-	// try {
-	// final File dir = new File(Environment.getExternalStorageDirectory()
-	// .getAbsolutePath() + "/" + AppConfig.FOLDER_SAVE + "/");
-	//
-	// if (!dir.exists()) {
-	// dir.mkdirs();
-	// }
-	//
-	// final File myFile = new File(dir, fileName + ".html");
-	//
-	// if (!myFile.exists()) {
-	// myFile.createNewFile();
-	// }
-	//
-	// writer = new BufferedWriter(new OutputStreamWriter(
-	// new FileOutputStream(myFile), "UTF-8"));
-	// writer.write(body);
-	// if (writer != null)
-	// writer.close();
-	// } catch (IOException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// }
+	/*
+	 * Lưu tin nhắn về dạng file html // private void saveHtmlToSDCard(final
+	 * NewsItem news) { // dialog = ProgressDialog.show(this, "", //
+	 * getResources().getString(R.string.loading), true, true); // StringRequest
+	 * request = new StringRequest(AppConfig.URL_GETNEWS // + news.getId(), new
+	 * Listener<String>() { // @Override // public void onResponse(String arg0)
+	 * { // // TODO Auto-generated method stub // arg0 = "<H2>" +
+	 * news.getTitle() + "</H2>\n" // + arg0.replace("<>", "").trim(); //
+	 * writeToFile(news.getId(), arg0); // if (dialog != null) //
+	 * dialog.dismiss(); // // } // }, new ErrorListener() { // @Override //
+	 * public void onErrorResponse(VolleyError arg0) { // // TODO Auto-generated
+	 * method stub // if (dialog != null) // dialog.dismiss(); //
+	 * arg0.printStackTrace(); // } // }); //
+	 * AppController.getInstance().addToRequestQueue(request); // }
+	 * 
+	 * // private void writeToFile(String fileName, String body) { // //
+	 * FileOutputStream fos = null; // Writer writer = null; // try { // final
+	 * File dir = new File(Environment.getExternalStorageDirectory() //
+	 * .getAbsolutePath() + "/" + AppConfig.FOLDER_SAVE + "/"); // // if
+	 * (!dir.exists()) { // dir.mkdirs(); // } // // final File myFile = new
+	 * File(dir, fileName + ".html"); // // if (!myFile.exists()) { //
+	 * myFile.createNewFile(); // } // // writer = new BufferedWriter(new
+	 * OutputStreamWriter( // new FileOutputStream(myFile), "UTF-8")); //
+	 * writer.write(body); // if (writer != null) // writer.close(); // } catch
+	 * (IOException e) { // // TODO Auto-generated catch block //
+	 * e.printStackTrace(); // } // }
 	 */
 }
