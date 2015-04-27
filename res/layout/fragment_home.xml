@@ -23,6 +23,7 @@
         android:layout_margin="8dp"
         android:background="#55FFFFFF"
         android:scaleType="center"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/ic_back_top_2" />
 
 </RelativeLayout>
