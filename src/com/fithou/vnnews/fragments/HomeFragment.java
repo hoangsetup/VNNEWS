@@ -41,6 +41,7 @@ public class HomeFragment extends Fragment {
 	private int step = 6;
 	private int page = 0;
 	private String LINK_NEWS = "";
+	
 
 	private ProgressDialog dialog = null;
 
@@ -98,6 +99,7 @@ public class HomeFragment extends Fragment {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(getActivity(), MainActivity.class);
 				intent.putExtra("news", newsItems.get(arg2));
+				intent.putExtra("catename", getActivity().getActionBar().getTitle());
 				startActivity(intent);
 			}
 		});

@@ -53,6 +53,8 @@ public class MainActivity extends Activity {
 		webView = (WebView) findViewById(R.id.webView_main);
 
 		item = (NewsItem) getIntent().getSerializableExtra("news");
+		
+		getActionBar().setTitle(getIntent().getStringExtra("catename"));
 
 		String link = item.getNguon();
 
