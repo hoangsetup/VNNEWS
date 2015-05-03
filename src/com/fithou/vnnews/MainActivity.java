@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -53,12 +54,26 @@ public class MainActivity extends Activity {
 		webView = (WebView) findViewById(R.id.webView_main);
 
 		item = (NewsItem) getIntent().getSerializableExtra("news");
-		
-		getActionBar().setTitle(getIntent().getStringExtra("catename"));
 
 		String link = item.getNguon();
 
+		webView.setWebChromeClient(new WebChromeClient() {
+			@Override
+			public void onProgressChanged(WebView view, int newProgress) {
+				// TODO Auto-generated method stub
+				super.onProgressChanged(view, newProgress);
+				MainActivity.this.setTitle("Đang tải..." + newProgress + "%");
+				if(dialog != null){
+					dialog.setProgress(newProgress);
+				}
+				if (newProgress == 100) {
+					MainActivity.this.getActionBar().setTitle(
+							getIntent().getStringExtra("catename"));
+				}
+			}
+		});
 		webView.setWebViewClient(new WebViewClient() {
+
 			@Override
 			public void onPageFinished(WebView view, String url) {
 				// TODO Auto-generated method stub
@@ -81,8 +96,14 @@ public class MainActivity extends Activity {
 		// remove a weird white line on the right size
 		webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 
-		dialog = ProgressDialog.show(this, "",
-				getResources().getString(R.string.loading), true, true);
+		dialog = new ProgressDialog(this);
+		dialog.setTitle("");
+		dialog.setMessage("Đang tải...");
+		dialog.setIndeterminate(false);
+		dialog.setCancelable(true);
+		dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		dialog.setMax(100);
+		dialog.show();
 		webView.loadUrl(link);
 		// AppController.getInstance().addToRequestQueue(request);
 	}
@@ -105,7 +126,8 @@ public class MainActivity extends Activity {
 			// SharedPreHelper helper = new SharedPreHelper(this);
 			AppConfig.FAVORITE.insertElementAt(this.item, 0);
 			// helper.savaListNews(AppConfig.TIN_NONG, helper.KEY_FAVORITE);
-			Toast.makeText(this, "Đã thêm vào mục đọc sau!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Đã thêm vào mục đọc sau!", Toast.LENGTH_SHORT)
+					.show();
 			break;
 		case android.R.id.home:
 			finish();
