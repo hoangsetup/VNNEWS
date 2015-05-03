@@ -49,7 +49,7 @@ public class AboutFragment extends Fragment {
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				// TODO Auto-generated method stub
-				String aboutme = "Thông tin nhóm: 19\n" + "Thành viên:\n"
+				String aboutme = "Thông tin nhóm: 03\n" + "Thành viên:\n"
 						+ "\t\t\tĐinh Văn Hoàng\n" + "\t\t\tHoàng Văn Lâm\n"
 						+ "\t\t\tNguyễn Thị Bích Nhung";
 				info.setText(aboutme);

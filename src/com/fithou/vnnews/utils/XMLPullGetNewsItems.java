@@ -38,11 +38,9 @@ public class XMLPullGetNewsItems {
 
 				case XmlPullParser.END_TAG:
 					tagname = parser.getName();
-					// Log.d("XML_END TAG", tagname+"-------");
 					if (tagname.equalsIgnoreCase("news")) {
 						// add employee object to list
 						items.add(item);
-
 					} else if (tagname.equalsIgnoreCase("Id")) {
 						item.setId(string);
 					} else if (tagname.equalsIgnoreCase("Title")) {

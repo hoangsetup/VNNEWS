@@ -33,7 +33,7 @@
         android:layout_alignParentRight="true"
         android:textColor="#00aff0"
         android:gravity="center"
-        android:text="Copyright : Nhóm 19 - 2015"
+        android:text="Copyright : Nhóm 3 - 2015"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <com.fithou.vnnews.models.ProgressWheel

@@ -24,7 +24,7 @@ public class SharedPreHelper {
 				Activity.MODE_PRIVATE);
 	}
 
-	public void savaListNews(Vector<NewsItem> items, String key) {
+	public void saveListNews(Vector<NewsItem> items, String key) {
 		Editor editor = preferences.edit();
 		Gson gson = new Gson();
 		String json = gson.toJson(items);

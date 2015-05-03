@@ -289,7 +289,7 @@ public class SlideActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onPause();
 		SharedPreHelper helper = new SharedPreHelper(this);
-		helper.savaListNews(AppConfig.FAVORITE, helper.KEY_FAVORITE);
+		helper.saveListNews(AppConfig.FAVORITE, helper.KEY_FAVORITE);
 	}
 
 	@Override
