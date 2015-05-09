@@ -4,7 +4,6 @@
     android:layout_height="match_parent" >
 
     <GridView
-        android:layout_marginTop="50dp"
         android:id="@+id/grid_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -23,31 +22,8 @@
         android:layout_alignParentRight="true"
         android:layout_margin="8dp"
         android:background="#55FFFFFF"
-        android:scaleType="center"
         android:contentDescription="@string/app_name"
+        android:scaleType="center"
         android:src="@drawable/ic_back_top_2" />
-
-    <EditText
-        android:id="@+id/editText_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button_search"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/button_search"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/button_search"
-        android:background="@drawable/button_style"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:drawableLeft="@android:drawable/alert_dark_frame"
-        android:text="Tìm" />
 
 </RelativeLayout>

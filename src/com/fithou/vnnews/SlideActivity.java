@@ -137,7 +137,7 @@ public class SlideActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		return false;
 	}
 
 	@Override
@@ -163,9 +163,8 @@ public class SlideActivity extends Activity {
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// if nav drawer is opened, hide the action items
-		//boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-		//menu.findItem(R.id.action_back_top).setVisible(!drawerOpen);
-
+		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+		menu.findItem(R.id.action_search).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 

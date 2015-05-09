@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +18,11 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.SearchView;
+import android.widget.SearchView.OnCloseListener;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 
 import com.android.volley.Request.Method;
@@ -51,8 +54,7 @@ public class HomeFragment extends Fragment {
 	private ImageButton imageButton_top;
 
 	// Cô Hà hỏi thêm :)
-	private Button button_search;
-	private EditText edit_search;
+	private SearchView mSearchView;
 
 	public HomeFragment(Vector<NewsItem> vt) {
 		this.vtTemp = vt;
@@ -155,33 +157,7 @@ public class HomeFragment extends Fragment {
 				gridView.smoothScrollToPosition(0);
 			}
 		});
-
-		// Cô Hà hỏi thêm
-		button_search = (Button) rootView.findViewById(R.id.button_search);
-		edit_search = (EditText) rootView.findViewById(R.id.editText_search);
-		button_search.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				String keyword = edit_search.getText().toString();
-				if (TextUtils.isEmpty(keyword)) {
-					adapter = new GridViewAdapter(getActivity(), newsItems);
-					gridView.setAdapter(adapter);
-				} else {
-					Vector<NewsItem> vtResult = new Vector<NewsItem>();
-					for (NewsItem item : vtTemp) {
-						if (item.getTitle().matches(".*" + keyword + ".*")) {
-							vtResult.add(item);
-						}
-					}
-					if (vtResult.size() > 0) {
-						adapter = new GridViewAdapter(getActivity(), vtResult);
-						gridView.setAdapter(adapter);
-					}
-				}
-			}
-		});
+		
 
 		return rootView;
 	}
@@ -226,6 +202,51 @@ public class HomeFragment extends Fragment {
 				});
 		AppController.getInstance().addToRequestQueue(request);
 		//
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+		super.onCreateOptionsMenu(menu, inflater);
+		MenuItem searchItem = menu.findItem(R.id.action_search);
+		mSearchView = (SearchView) searchItem.getActionView();
+		mSearchView.setOnQueryTextListener(new OnQueryTextListener() {
+
+			@Override
+			public boolean onQueryTextSubmit(String query) {
+				return false;
+			}
+
+			@Override
+			public boolean onQueryTextChange(String newText) {
+				
+				if (TextUtils.isEmpty(newText)) {
+					adapter = new GridViewAdapter(getActivity(), newsItems);
+					gridView.setAdapter(adapter);
+				} else {
+					Vector<NewsItem> vtResult = new Vector<NewsItem>();
+					for (NewsItem item : vtTemp) {
+						if (item.getTitle().matches(".*" + newText + ".*")) {
+							vtResult.add(item);
+						}
+					}
+					if (vtResult.size() > 0) {
+						adapter = new GridViewAdapter(getActivity(), vtResult);
+						gridView.setAdapter(adapter);
+					}
+				}
+				return false;
+			}
+		});
+		mSearchView.setOnCloseListener(new OnCloseListener() {
+
+			@Override
+			public boolean onClose() {
+				adapter = new GridViewAdapter(getActivity(), newsItems);
+				gridView.setAdapter(adapter);
+				return false;
+			}
+		});
 	}
 
 	@Override
