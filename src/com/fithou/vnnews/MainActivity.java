@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -30,6 +31,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
 		// if (Build.VERSION.SDK_INT < 16) {
 		// getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -49,8 +51,13 @@ public class MainActivity extends Activity {
 		getActionBar().setIcon(R.drawable.ic_back);
 		getActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor("#55000000")));
-
+		
+		
+		
 		setContentView(R.layout.activity_main);
+		
+		setProgressBarIndeterminateVisibility(true);
+
 		webView = (WebView) findViewById(R.id.webView_main);
 
 		item = (NewsItem) getIntent().getSerializableExtra("news");
@@ -65,10 +72,12 @@ public class MainActivity extends Activity {
 				MainActivity.this.setTitle("Đang tải..." + newProgress + "%");
 				if(dialog != null){
 					dialog.setProgress(newProgress);
+					
 				}
-				if (newProgress == 100) {
+				if (newProgress >= 95) {//100
 					MainActivity.this.getActionBar().setTitle(
 							getIntent().getStringExtra("catename"));
+					setProgressBarIndeterminateVisibility(false);
 				}
 			}
 		});
@@ -103,7 +112,7 @@ public class MainActivity extends Activity {
 		dialog.setCancelable(true);
 		dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		dialog.setMax(100);
-		dialog.show();
+		//dialog.show();
 		webView.loadUrl(link);
 		// AppController.getInstance().addToRequestQueue(request);
 	}

@@ -16,6 +16,8 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -41,13 +43,16 @@ public class HomeFragment extends Fragment {
 	private int step = 6;
 	private int page = 0;
 	private String LINK_NEWS = "";
-	
 
 	private ProgressDialog dialog = null;
 
 	public static boolean isFavorite = false;
 
 	private ImageButton imageButton_top;
+
+	// Cô Hà hỏi thêm :)
+	private Button button_search;
+	private EditText edit_search;
 
 	public HomeFragment(Vector<NewsItem> vt) {
 		this.vtTemp = vt;
@@ -99,7 +104,8 @@ public class HomeFragment extends Fragment {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(getActivity(), MainActivity.class);
 				intent.putExtra("news", newsItems.get(arg2));
-				intent.putExtra("catename", getActivity().getActionBar().getTitle());
+				intent.putExtra("catename", getActivity().getActionBar()
+						.getTitle());
 				startActivity(intent);
 			}
 		});
@@ -140,13 +146,40 @@ public class HomeFragment extends Fragment {
 				return false;
 			}
 		});
-		
+
 		imageButton_top.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				gridView.smoothScrollToPosition(0);
+			}
+		});
+
+		// Cô Hà hỏi thêm
+		button_search = (Button) rootView.findViewById(R.id.button_search);
+		edit_search = (EditText) rootView.findViewById(R.id.editText_search);
+		button_search.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				String keyword = edit_search.getText().toString();
+				if (TextUtils.isEmpty(keyword)) {
+					adapter = new GridViewAdapter(getActivity(), newsItems);
+					gridView.setAdapter(adapter);
+				} else {
+					Vector<NewsItem> vtResult = new Vector<NewsItem>();
+					for (NewsItem item : vtTemp) {
+						if (item.getTitle().matches(".*" + keyword + ".*")) {
+							vtResult.add(item);
+						}
+					}
+					if (vtResult.size() > 0) {
+						adapter = new GridViewAdapter(getActivity(), vtResult);
+						gridView.setAdapter(adapter);
+					}
+				}
 			}
 		});
 
@@ -202,9 +235,9 @@ public class HomeFragment extends Fragment {
 		// case R.id.action_refresh:
 		// loadmoreNews();
 		// return true;
-		//case R.id.action_back_top:
-		//	gridView.smoothScrollToPosition(0);
-		//	return true;
+		// case R.id.action_back_top:
+		// gridView.smoothScrollToPosition(0);
+		// return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
